@@ -7,6 +7,8 @@ The main purpose of the project is to provide a pure Java terminal widget ready
 to embed into IDE. From this comes the name
 J(from `Java`)edi(reversed `IDE`)Term(obviously from `terminal`)
 
+Forked with the goal of creating a standalone cross platform ssh connection client similar to Gnome Connection Manager http://kuthulu.com/gcm/. 
+
 
 Authors
 -------
