@@ -11,6 +11,7 @@ public interface TtyConnector {
 
   void close();
 
+    //
   void resize(Dimension termSize, Dimension pixelSize);
 
   String getName();

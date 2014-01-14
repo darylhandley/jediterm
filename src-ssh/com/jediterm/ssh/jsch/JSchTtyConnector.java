@@ -102,6 +102,7 @@ public class JSchTtyConnector implements TtyConnector {
   private Session connectSession(Questioner questioner) throws JSchException {
     JSch jsch = new JSch();
 
+
     Session session = jsch.getSession(myUser, myHost, myPort);
 
     final QuestionerUserInfo ui = new QuestionerUserInfo(questioner);
@@ -123,7 +124,7 @@ public class JSchTtyConnector implements TtyConnector {
 
   protected void configureSession(Session session, final java.util.Properties config) throws JSchException {
     session.setConfig(config);
-    session.setTimeout(5000);
+    session.setTimeout(30 * 1000);
   }
 
   private void getAuthDetails(Questioner q) {

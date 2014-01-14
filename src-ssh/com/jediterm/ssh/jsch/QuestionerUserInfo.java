@@ -39,14 +39,18 @@ class QuestionerUserInfo implements UserInfo, UIKeyboardInteractive {
   }
 
   public boolean promptYesNo(String message) {
-    String yn = myQuestioner.questionVisible(message + " [Y/N]:", "Y");
-    String lyn = yn.toLowerCase();
-    if (lyn.equals("y") || lyn.equals("yes")) {
-      return true;
-    }
-    else {
-      return false;
-    }
+//    String yn = myQuestioner.questionVisible(message + " [Y/N]:", "Y");
+//    String lyn = yn.toLowerCase();
+//    if (lyn.equals("y") || lyn.equals("yes")) {
+//      return true;
+//    }
+//    else {
+//      return false;
+//    }
+
+    // daryl set this to always true to prevent having to be prompted Y/N every time
+    // should probably fix this later for security reasons.
+    return true;
   }
 
   public void showMessage(String message) {
