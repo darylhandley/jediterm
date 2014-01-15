@@ -38,6 +38,8 @@ public class TerminateMainFrame extends JFrame  {
         final JMenuBar mb = getJMenuBar();
         this.setJMenuBar(mb);
 
+        this.setTitle("Terminate");
+
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
