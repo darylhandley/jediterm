@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import com.jediterm.terminal.*;
 import com.jediterm.terminal.TextStyle.Option;
 import com.jediterm.terminal.display.*;
+import com.jediterm.terminal.dui.Log;
 import com.jediterm.terminal.emulator.ColorPalette;
 import com.jediterm.terminal.emulator.charset.CharacterSets;
 import com.jediterm.terminal.emulator.mouse.MouseMode;
@@ -220,8 +221,12 @@ public class TerminalPanel extends JComponent implements TerminalDisplay, Clipbo
           handlePaste();
         }
         else if (e.getButton() == MouseEvent.BUTTON3) {
-          JPopupMenu popup = createPopupMenu();
-          popup.show(e.getComponent(), e.getX(), e.getY());
+            // right mouse button will past to terminal
+            // Log.info("mouse button 3 clicked");
+            handlePaste();
+            // old code to popup a menu for copy/paste
+            // JPopupMenu popup = createPopupMenu();
+            // popup.show(e.getComponent(), e.getX(), e.getY());
         }
         repaint();
       }
@@ -583,18 +588,18 @@ public class TerminalPanel extends JComponent implements TerminalDisplay, Clipbo
       int y = (myCursor.getCoordY()) * myCharSize.height - 2;
 
       int len = (myInputMethodUncommitedChars.length()) * myCharSize.width;
-      
+
       gfx.setColor(getBackground());
       gfx.fillRect(x, (myCursor.getCoordY()-1)*myCharSize.height, len, myCharSize.height);
-      
+
       gfx.setColor(getForeground());
       gfx.setFont(myNormalFont);
-      
+
       gfx.drawString(myInputMethodUncommitedChars, x, y);
       Stroke saved = gfx.getStroke();
       BasicStroke dotted = new BasicStroke(1, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 0, new float[]{0, 2, 0, 2}, 0);
       gfx.setStroke(dotted);
-      
+
       gfx.drawLine(x, y, x + len, y);
       gfx.setStroke(saved);
     }
@@ -890,7 +895,7 @@ public class TerminalPanel extends JComponent implements TerminalDisplay, Clipbo
     int newBlockLen = 1;
     int offset = 0;
     int drawCharsOffset = 0;
-    
+
     // workaround to fix Swing bad rendering of bold special chars on Linux
     CharBuffer renderingBuffer;
     if(mySettingsProvider.DECCompatibilityMode() && style.hasOption(TextStyle.Option.BOLD)) {
@@ -898,7 +903,7 @@ public class TerminalPanel extends JComponent implements TerminalDisplay, Clipbo
     } else {
       renderingBuffer = buf;
     }
-    
+
     while (offset + newBlockLen <= buf.getLength()) {
       Font font = getFontToDisplay(buf.charAt(offset + newBlockLen - 1), style);
       while (myMonospaced && (offset + newBlockLen < buf.getLength()) && isWordCharacter(buf.charAt(offset + newBlockLen - 1))
