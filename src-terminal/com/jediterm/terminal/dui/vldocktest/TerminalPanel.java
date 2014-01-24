@@ -30,7 +30,7 @@ import java.util.Map;
  */
 public class TerminalPanel extends JPanel implements Dockable {
 
-    private DockKey key = null;
+    private DockKey key = new DockKey("terminalPanel");
 
     private TerminalWidget myTerminal;
 
