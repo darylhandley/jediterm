@@ -1,167 +1,199 @@
-<project name="JediTerm" default="all-jars">
-  <property name="src-terminal" value="src-terminal"/>
-  <property name="src-pty" value="src-pty"/>
-  <property name="src-ssh" value="src-ssh"/>
+<project name="JediTerm" default="jediterm.jar">
+    <property name="src-terminal" value="src-terminal"/>
+    <property name="src-pty" value="src-pty"/>
+    <property name="src-ssh" value="src-ssh"/>
 
-  <loadfile property="version" srcfile="VERSION"/>
+    <loadfile property="version" srcfile="VERSION"/>
 
-  <property name="classes" value="classes"/>
+    <property name="classes" value="classes"/>
 
-  <path id="common-jars">
-    <fileset dir="lib" id="common-jars-fileset">
-      <include name="guava*.jar"/>
-      <include name="log4*.jar"/>
-      <include name="annotations.jar"/>
-    </fileset>
-  </path>
-
-  <path id="ssh-jars">
-    <fileset dir="lib">
-      <include name="jsch*.jar"/>
-      <include name="jzlib*.jar"/>
-    </fileset>
-  </path>
-
-  <path id="pty-jars">
-    <fileset dir="lib" id="pty-jars-fileset">
-      <include name="jna*.jar"/>
-      <include name="pty4j*.jar"/>
-      <include name="jsch*.jar"/>
-      <include name="purejavacomm*.jar"/>
-    </fileset>
-  </path>
-
-
-  <target name="clean">
-    <delete quiet="true">
-      <fileset dir="${classes}">
-        <include name="**/*.class"/>
-      </fileset>
-    </delete>
-  </target>
-
-
-  <target name="build-jediterm-ssh" depends="clean">
-    <property name="jediterm-ssh-classes" value="${classes}/jediterm-ssh"/>
-    <mkdir dir="${jediterm-ssh-classes}"/>
-    <javac destdir="${jediterm-ssh-classes}" source="1.5" target="1.5" debug="true">
-      <src path="${src-terminal}"/>
-      <src path="${src-ssh}"/>
-      <classpath refid="common-jars"/>
-      <classpath refid="ssh-jars"/>
-    </javac>
-  </target>
-
-  <target name="jediterm-ssh.jar" depends="build-jediterm-ssh">
-    <jar destfile="build/jediterm-ssh-${version}.jar"
-         basedir="${jediterm-ssh-classes}"
-         excludes="**/Test.class">
-      <manifest>
-        <attribute name="Main-Class" value="com.jediterm.ssh.SshMain"/>
-      </manifest>
-    </jar>
-  </target>
-
-
-  <target name="build-jediterm-pty" depends="clean">
-    <property name="jediterm-pty-classes" value="${classes}/jediterm-pty"/>
-    <mkdir dir="${jediterm-pty-classes}"/>
-    <javac destdir="${jediterm-pty-classes}" source="1.5" target="1.5" debug="true">
-      <src path="${src-terminal}"/>
-      <src path="${src-pty}"/>
-      <classpath refid="common-jars"/>
-      <classpath refid="pty-jars"/>
-    </javac>
-  </target>
-
-  <target name="jediterm-pty.jar" depends="build-jediterm-pty">
-    <jar destfile="build/jediterm-pty-${version}.jar"
-         basedir="${jediterm-pty-classes}"
-         excludes="**/Test.class">
-      <manifest>
-        <attribute name="Main-Class" value="com.jediterm.pty.PtyMain"/>
-      </manifest>
-    </jar>
-  </target>
-
-  <target name="all-jars" depends="jediterm-ssh.jar,jediterm-pty.jar">
-  </target>
-
-
-  <path id="junit-jar">
-    <fileset dir="lib">
-      <include name="junit*.jar"/>
-    </fileset>
-  </path>
-
-  <property name="src-tests" value="tests"/>
-
-  <property name="tests-classes" value="${classes}/tests"/>
-
-  <target name="build-tests">
-
-    <mkdir dir="${tests-classes}"/>
-    <javac destdir="${tests-classes}" source="1.5" target="1.5">
-      <src path="${src-tests}"/>
-      <src path="${src-terminal}"/>
-
-      <classpath refid="common-jars"/>
-      <classpath refid="pty-jars"/>
-      <classpath refid="ssh-jars"/>
-      <classpath refid="junit-jar"/>
-    </javac>
-
-    <copy todir="${tests-classes}/">
-      <fileset dir="${src-tests}" includes="**/*.txt"/>
-    </copy>
-  </target>
-
-  <target name="test" depends="build-tests">
-
-    <junit haltonfailure="yes">
-      <classpath refid="junit-jar"/>
-      <classpath location="${tests-classes}"/>
-      <classpath refid="common-jars"/>
-
-      <formatter type="plain" usefile="false" /> <!-- prints test output to screen -->
-      
-      <batchtest fork="yes">
-        <fileset dir="tests">
-          <include name="**/*Test.java"/>
+    <path id="common-jars">
+        <fileset dir="lib" id="common-jars-fileset">
+            <include name="guava*.jar"/>
+            <include name="log4*.jar"/>
+            <include name="annotations.jar"/>
+            <include name="vldocking*.jar"/>
+            <include name="pty4j*.jar"/>
+            <include name="jsch*.jar"/>
+            <include name="jzlib*.jar"/>
+            <include name="jna*.jar"/>
+            <include name="purejavacomm*.jar"/>
         </fileset>
-      </batchtest>
+    </path>
 
-    </junit>
+    <!--<path id="ssh-jars">-->
+    <!--<fileset dir="lib">-->
+    <!--<include name="jsch*.jar"/>-->
+    <!--<include name="jzlib*.jar"/>-->
+    <!--</fileset>-->
+    <!--</path>-->
 
-  </target>
+    <!--<path id="pty-jars">-->
+    <!--<fileset dir="lib" id="pty-jars-fileset">-->
+    <!--<include name="jna*.jar"/>-->
+    <!--<include name="pty4j*.jar"/>-->
+    <!--<include name="jsch*.jar"/>-->
+    <!--<include name="purejavacomm*.jar"/>-->
+    <!--</fileset>-->
+    <!--</path>-->
 
 
-    <target name="jediterm-pty-package" depends="jediterm-pty.jar">
+    <target name="clean">
+        <delete quiet="true">
+            <fileset dir="${classes}">
+                <include name="**/*.class"/>
+            </fileset>
+        </delete>
+    </target>
 
-        <property name="destination.jar.name" value="jediterm-${version}"/>
-        <property name="destination.dir" value="build"/>
-        <property name="application.main-class" value="com.jediterm.pty.PtyMain"/>
-        <property name="destination.jar" value="${destination.dir}/${destination.jar.name}.jar"/>
+    <target name="build-jediterm" depends="clean">
+        <property name="jediterm-classes" value="${classes}"/>
+        <mkdir dir="${jediterm-classes}"/>
+        <javac destdir="${jediterm-classes}" includeantruntime="false" source="1.5" target="1.5" debug="true">
+            <src path="${src-terminal}"/>
+            <src path="${src-ssh}"/>
+            <src path="${src-pty}"/>
+            <classpath refid="common-jars"/>
+            <!--<classpath refid="ssh-jars"/>-->
+        </javac>
+    </target>
 
-        <echo message="Packaging jediterm-pty into a single JAR at ${destination.jar}"/>
 
-        <property name="temp.jar" value="${destination.dir}/jediterm_temp.jar"/>
-        
-        <jar destfile="${temp.jar}" filesetmanifest="skip">
-            <!-- Packages the following jars -->
-            <zipgroupfileset dir="build" includes="jediterm-pty-${version}.jar"/>
-            <zipgroupfileset refid="common-jars-fileset"/>
-            <zipgroupfileset refid="pty-jars-fileset"/>
+    <!--<target name="build-jediterm-ssh" depends="clean">-->
+    <!--<property name="jediterm-ssh-classes" value="${classes}/jediterm-ssh"/>-->
+    <!--<mkdir dir="${jediterm-ssh-classes}"/>-->
+    <!--<javac destdir="${jediterm-ssh-classes}"  includeantruntime="false" source="1.5" target="1.5" debug="true">-->
+    <!--<src path="${src-terminal}"/>-->
+    <!--<src path="${src-ssh}"/>-->
+    <!--<src path="${src-pty}"/>-->
+    <!--<classpath refid="common-jars"/>-->
+    <!--&lt;!&ndash;<classpath refid="ssh-jars"/>&ndash;&gt;-->
+    <!--</javac>-->
+    <!--</target>-->
+
+    <!--<target name="jediterm-ssh.jar" depends="build-jediterm-ssh">-->
+    <!--<jar destfile="build/jediterm-ssh-${version}.jar"-->
+    <!--basedir="${jediterm-ssh-classes}"-->
+    <!--excludes="**/Test.class">-->
+    <!--<manifest>-->
+    <!--<attribute name="Main-Class" value="com.jediterm.ssh.SshMain"/>-->
+    <!--</manifest>-->
+    <!--</jar>-->
+    <!--</target>-->
+
+    <target name="jediterm.jar" depends="build-jediterm">
+        <jar destfile="build/jediterm-${version}.jar"
+             basedir="${jediterm-classes}"
+             excludes="**/Test.class">
             <manifest>
-                <attribute name="Main-Class" value="${application.main-class}"/>
+                <attribute name="Main-Class" value="com.jediterm.terminal.dui.vldocktest.TerminateMainFrame"/>
             </manifest>
         </jar>
-
-        <zip destfile="${destination.jar}">
-            <zipfileset src="${temp.jar}"
-                        excludes="META-INF/*.SF, META-INF/*.DSA, META-INF/*.RSA"/>
-        </zip>
-
-        <delete file="${temp.jar}"/>
     </target>
+
+
+    <!--<target name="build-jediterm-pty" depends="clean">-->
+        <!--<property name="jediterm-pty-classes" value="${classes}/jediterm-pty"/>-->
+        <!--<mkdir dir="${jediterm-pty-classes}"/>-->
+        <!--<javac destdir="${jediterm-pty-classes}" includeantruntime="false" source="1.5" target="1.5" debug="true">-->
+            <!--<src path="${src-terminal}"/>-->
+            <!--<src path="${src-pty}"/>-->
+            <!--<src path="${src-ssh}"/>-->
+            <!--<classpath refid="common-jars"/>-->
+            <!--&lt;!&ndash;<classpath refid="pty-jars"/>&ndash;&gt;-->
+        <!--</javac>-->
+    <!--</target>-->
+
+
+    <!--<target name="jediterm-pty.jar" depends="build-jediterm-pty">-->
+        <!--<jar destfile="build/jediterm-pty-${version}.jar"-->
+             <!--basedir="${jediterm-pty-classes}"-->
+             <!--excludes="**/Test.class">-->
+            <!--<manifest>-->
+                <!--<attribute name="Main-Class" value="com.jediterm.pty.PtyMain"/>-->
+            <!--</manifest>-->
+        <!--</jar>-->
+    <!--</target>-->
+
+    <!--<target name="all-jars" depends="jediterm-ssh.jar,jediterm-pty.jar">-->
+    <!--</target>-->
+
+
+    <path id="junit-jar">
+        <fileset dir="lib">
+            <include name="junit*.jar"/>
+        </fileset>
+    </path>
+
+    <property name="src-tests" value="tests"/>
+
+    <property name="tests-classes" value="${classes}/tests"/>
+
+    <target name="build-tests">
+
+        <mkdir dir="${tests-classes}"/>
+        <javac destdir="${tests-classes}" includeantruntime="false" source="1.5" target="1.5">
+            <src path="${src-tests}"/>
+            <src path="${src-terminal}"/>
+
+            <classpath refid="common-jars"/>
+            <!--<classpath refid="pty-jars"/>-->
+            <!--<classpath refid="ssh-jars"/>-->
+            <classpath refid="junit-jar"/>
+        </javac>
+
+        <copy todir="${tests-classes}/">
+            <fileset dir="${src-tests}" includes="**/*.txt"/>
+        </copy>
+    </target>
+
+    <target name="test" depends="build-tests">
+
+        <junit haltonfailure="yes">
+            <classpath refid="junit-jar"/>
+            <classpath location="${tests-classes}"/>
+            <classpath refid="common-jars"/>
+
+            <formatter type="plain" usefile="false"/>
+            <!-- prints test output to screen -->
+
+            <batchtest fork="yes">
+                <fileset dir="tests">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+
+        </junit>
+
+    </target>
+
+
+    <!--<target name="jediterm-pty-package" depends="jediterm-pty.jar">-->
+
+        <!--<property name="destination.jar.name" value="jediterm-${version}"/>-->
+        <!--<property name="destination.dir" value="build"/>-->
+        <!--<property name="application.main-class" value="com.jediterm.pty.PtyMain"/>-->
+        <!--<property name="destination.jar" value="${destination.dir}/${destination.jar.name}.jar"/>-->
+
+        <!--<echo message="Packaging jediterm-pty into a single JAR at ${destination.jar}"/>-->
+
+        <!--<property name="temp.jar" value="${destination.dir}/jediterm_temp.jar"/>-->
+
+        <!--<jar destfile="${temp.jar}" filesetmanifest="skip">-->
+            <!--&lt;!&ndash; Packages the following jars &ndash;&gt;-->
+            <!--<zipgroupfileset dir="build" includes="jediterm-pty-${version}.jar"/>-->
+            <!--<zipgroupfileset refid="common-jars-fileset"/>-->
+            <!--&lt;!&ndash;<zipgroupfileset refid="pty-jars-fileset"/>&ndash;&gt;-->
+            <!--<manifest>-->
+                <!--<attribute name="Main-Class" value="${application.main-class}"/>-->
+            <!--</manifest>-->
+        <!--</jar>-->
+
+        <!--<zip destfile="${destination.jar}">-->
+            <!--<zipfileset src="${temp.jar}"-->
+                        <!--excludes="META-INF/*.SF, META-INF/*.DSA, META-INF/*.RSA"/>-->
+        <!--</zip>-->
+
+        <!--<delete file="${temp.jar}"/>-->
+    <!--</target>-->
 </project>
