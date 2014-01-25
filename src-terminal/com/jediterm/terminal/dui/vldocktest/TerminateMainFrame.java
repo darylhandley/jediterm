@@ -1,6 +1,7 @@
 package com.jediterm.terminal.dui.vldocktest;
 
 import com.jediterm.terminal.dui.LaunchSshAction;
+import com.jediterm.terminal.dui.Log;
 import com.jediterm.terminal.dui.SshConnectionConfig;
 import com.jediterm.terminal.dui.TerminateController;
 import com.vldocking.swing.docking.Dockable;
@@ -31,6 +32,8 @@ public class TerminateMainFrame extends JFrame  {
 
     private Dockable editorPanel = new MyTextEditor();
 
+    private TerminalPanel terminalPanel1;
+
     public TerminateMainFrame(){
 
         // System.setProperty("com.apple.mrj.application.apple.menu.about.name", "My App Name");
@@ -58,7 +61,7 @@ public class TerminateMainFrame extends JFrame  {
 
         SshConnectionConfig sshConfig = new SshConnectionConfig("Local",
                 "localhost", "", "");
-        TerminalPanel terminalPanel1 = new TerminalPanel(sshConfig);
+        terminalPanel1 = new TerminalPanel(sshConfig);
         terminalsDesktop.addDockable(terminalPanel1);
 
         // desk.split(editorPanel, terminalPanel, DockingConstants.SPLIT_BOTTOM);
@@ -71,6 +74,15 @@ public class TerminateMainFrame extends JFrame  {
 
         TerminalPanel terminalPanel4 = new TerminalPanel(sshConfig);
         terminalsDesktop.split(terminalPanel2, terminalPanel4, DockingConstants.SPLIT_BOTTOM);
+
+
+        // need to set the focus so that we can have a focused element when we add our first
+        //
+//        terminalPanel1.grabFocus();
+//        terminalPanel1.requestFocus(false);
+//
+//        terminalPanel1.setRequestFocusEnabled(true);
+//        terminalPanel1.requestFocusInWindow();
 
 
         this.addWindowListener(new WindowAdapter() {
@@ -90,11 +102,28 @@ public class TerminateMainFrame extends JFrame  {
 
     public void launchSshSession(SshConnectionConfig sshConfig) {
         TerminalPanel terminalPanel = new TerminalPanel(sshConfig);
-        Dockable selected = terminalsDesktop.getSelectedDockable();
+        Dockable selected = terminalsDesktop.getLastFocused();
+        Log.info("selected is " + selected);
 
 
-        // add on top of selected (doesn't work, getSelectedDockable returns null)
-        terminalsDesktop.createTab(selected, terminalPanel, 0);
+        // bit of a hack, coz I can't figure out how to give it
+        // focus on start up. may also be because of the getLastFocused method that I added.
+        if (selected == null) {
+            selected = terminalPanel1;
+        }
+
+
+        terminalsDesktop.createTab(selected, terminalPanel, 0, true);
+        // terminalsDesktop.terminalsDesktop.
+        terminalPanel.grabFocus();
+        terminalPanel.setRequestFocusEnabled(true);
+        terminalPanel.requestFocus(false);
+
+        terminalPanel.setRequestFocusEnabled(true);
+        terminalPanel.requestFocusInWindow();
+
+
+
 
 
         // add default
@@ -130,7 +159,7 @@ public class TerminateMainFrame extends JFrame  {
 
     public static void main(String[] args){
         final TerminateMainFrame frame = new TerminateMainFrame();
-        frame.setSize(800,600);
+        frame.setSize(1400,1100);
         frame.validate();
         SwingUtilities.invokeLater(new Runnable(){
             // in the event dispatch thread
