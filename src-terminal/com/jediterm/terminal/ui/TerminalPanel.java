@@ -221,12 +221,17 @@ public class TerminalPanel extends JComponent implements TerminalDisplay, Clipbo
           handlePaste();
         }
         else if (e.getButton() == MouseEvent.BUTTON3) {
-            // right mouse button will past to terminal
-            // Log.info("mouse button 3 clicked");
-            handlePaste();
-            // old code to popup a menu for copy/paste
-            // JPopupMenu popup = createPopupMenu();
-            // popup.show(e.getComponent(), e.getX(), e.getY());
+            // hard code to paste on right click, we'll leave the old code
+            // around in case we want to make this configurable in the future
+            boolean pasteOnRightClick = true;
+            if (pasteOnRightClick) {
+                handlePaste();
+            } else {
+                JPopupMenu popup = createPopupMenu();
+                popup.show(e.getComponent(), e.getX(), e.getY());
+
+            }
+
         }
         repaint();
       }
@@ -1338,19 +1343,49 @@ public class TerminalPanel extends JComponent implements TerminalDisplay, Clipbo
     }
   }
 
+    private void clearBuffer() {
+        Log.info("clearing buffer");
+        getScrollBuffer().clearAll();
+        getBackBuffer().clearAll();
+        // setCursor(100, 100);
+//        setAlignmentX(0);
+//        setAlignmentY(0);
+//        myCursor.setX(0);
+//        myCursor.setY(0);
+        updateScrolling();
+        redraw();
+    }
+
   public class TerminalKeyHandler implements KeyListener {
 
     public TerminalKeyHandler() {
     }
 
     public void keyPressed(final KeyEvent e) {
-      if (!TerminalAction.processEvent(TerminalPanel.this, e)) {
-        processTerminalKeyPressed(e);
-      }
+
+        // clear buff on control B. We may want to move this to processTerminalKeyPressed later
+        // or there may be a better way to handle it with some kind of key bindings.
+        // this works for now
+        Log.info("a key was pressed . key is char=" + e.getKeyChar() + ", keycode=" + e.getKeyCode());
+        if ((e.getKeyCode() == KeyEvent.VK_B) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
+            Log.info("control B");
+            clearBuffer();
+            return;
+        }
+
+        // pass any other key through to the terminal
+        if (!TerminalAction.processEvent(TerminalPanel.this, e)) {
+            processTerminalKeyPressed(e);
+
+        }
+
+        // always scroll to bottom when a key is pressed
+        scrollToBottom();
     }
 
     public void keyTyped(final KeyEvent e) {
-      processTerminalKeyTyped(e);
+        // Log.info("a key was typed. key is " + e.getKeyChar() + e.getKeyCode());
+        processTerminalKeyTyped(e);
     }
 
     //Ignore releases
