@@ -5,7 +5,7 @@ Velocity Terminal
 The main purpose of the project is to provide a pure Java terminal emulator that supports panes and
 tabs as well as storing connection info for ease of opening terminals.
 
-This was forked from JediTerm the goal of creating a standalone cross platform ssh connection
+This was forked from JediTerm with the goal of creating a standalone cross platform ssh connection
 client similar to Gnome Connection Manager http://kuthulu.com/gcm/.
 
 As much as possible I plan to reuse the code from JediTerm rather than forking the code. I hope to
@@ -58,12 +58,17 @@ Standalone java app.
 
 Origin
 ------
-Contined as a fork of JediTerm  Dmitry Trofimov <dmitry.trofimov@jetbrains.com>, Clément Poulain
+
+Continued as a fork of JediTerm  https://github.com/JetBrains/jediterm by
+Dmitry Trofimov and Clément Poulain
 
 which was in turn
 
 Continued as a fork of Gritty (http://code.google.com/p/gritty) by Robert Wittams
-and Omer Kudat, which was in its own turn a rework of
+and Omer Kudat,
+
+which was in its own turn a rework of
+
 JCTerm(http://www.jcraft.com/jcterm) by Atsuhiko Yamanaka
 
 Character sets designation and mapping implementation is based on 
