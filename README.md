@@ -1,18 +1,23 @@
-JediTerm
+Velocity Terminal
 ========
 
-[![Build Status](https://travis-ci.org/JetBrains/jediterm.png?branch=master)](https://travis-ci.org/JetBrains/jediterm)
 
-The main purpose of the project is to provide a pure Java terminal widget ready
-to embed into IDE. From this comes the name
-J(from `Java`)edi(reversed `IDE`)Term(obviously from `terminal`)
+The main purpose of the project is to provide a pure Java terminal emulator that supports panes and
+tabs as well as storing connection info for ease of opening terminals.
 
-Forked with the goal of creating a standalone cross platform ssh connection client similar to Gnome Connection Manager http://kuthulu.com/gcm/. 
+This was forked from JediTerm the goal of creating a standalone cross platform ssh connection
+client similar to Gnome Connection Manager http://kuthulu.com/gcm/.
+
+As much as possible I plan to reuse the code from JediTerm rather than forking the code. I hope to
+build a cool ui on top of JediTerm and contribute any improvements to JediTerm core back to
+JediTerm (if they want them).  At a later date I will look at including the JediTerm code as a
+jar rather than maintaing a separate copy.
 
 
 Authors
 -------
-Dmitry Trofimov <dmitry.trofimov@jetbrains.com>, Clément Poulain
+
+Daryl Handley <darylhandley72@yahoo.com>
 
 
 License
@@ -48,12 +53,15 @@ Links
 Usages
 ------
 
-JediTerm is used in IntelliJ based IDEs (IntelliJ IDEA, PyCharm, RubyMine, Web/PhpStorm): https://github.com/JetBrains/intellij-community/tree/master/plugins/terminal
+Standalone java app.
 
-There you can find implementation of correct terminal component painting for Apple Retina displays (see [JBTerminalPanel.java](https://github.com/JetBrains/intellij-community/blob/master/plugins/terminal/src/org/jetbrains/plugins/terminal/JBTerminalPanel.java) )
 
 Origin
 ------
+Contined as a fork of JediTerm  Dmitry Trofimov <dmitry.trofimov@jetbrains.com>, Clément Poulain
+
+which was in turn
+
 Continued as a fork of Gritty (http://code.google.com/p/gritty) by Robert Wittams
 and Omer Kudat, which was in its own turn a rework of
 JCTerm(http://www.jcraft.com/jcterm) by Atsuhiko Yamanaka
