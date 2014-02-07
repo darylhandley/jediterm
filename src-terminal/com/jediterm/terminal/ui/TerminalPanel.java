@@ -1366,9 +1366,9 @@ public class TerminalPanel extends JComponent implements TerminalDisplay, Clipbo
         // clear buff on control B. We may want to move this to processTerminalKeyPressed later
         // or there may be a better way to handle it with some kind of key bindings.
         // this works for now
-        Log.info("a key was pressed . key is char=" + e.getKeyChar() + ", keycode=" + e.getKeyCode());
+        //Log.info("a key was pressed . key is char=" + e.getKeyChar() + ", keycode=" + e.getKeyCode());
         if ((e.getKeyCode() == KeyEvent.VK_B) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
-            Log.info("control B");
+            // Log.info("control B");
             clearBuffer();
             return;
         }
