@@ -1,4 +1,4 @@
-package com.veloterm.ui;
+package veloterm.ui;
 
 import junit.framework.TestCase;
 import veloterm.ui.SshConnectionConfig;
