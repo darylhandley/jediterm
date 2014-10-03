@@ -85,8 +85,9 @@ public class VtEmulatorTest extends EmulatorTestAbstract {
 
   @Override
   protected String getPathToTest() {
-    String name = getName().substring(4);
-    int ind = name.lastIndexOf("_");
-    return TestPathsManager.getTestDataPath() + "vttest/" + name.substring(0, ind) + "/" + name.substring(ind+1);
+      String name = getName().substring(4);
+      int ind = name.lastIndexOf("_");
+      return getTestResourceDir() + "vttest/"  + name.substring(0, ind) + "/" + name.substring(ind + 1);
   }
+
 }

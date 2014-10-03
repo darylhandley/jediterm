@@ -4,6 +4,7 @@ import com.jediterm.terminal.display.BackBuffer;
 import com.jediterm.terminal.emulator.ColorPalette;
 
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * @author traff
@@ -32,8 +33,10 @@ public class EmulatorTest extends EmulatorTestAbstract {
     assertColor(backBuffer.getStyleAt(2, 0), ColorPalette.getIndexedColor(0), ColorPalette.getIndexedColor(6));
   }
 
-  @Override
-  protected String getPathToTest() {
-    return TestPathsManager.getTestDataPath() + getName();
-  }
+    @Override
+    protected String getPathToTest() {
+        return getTestResourceDir() + getName();
+    }
+
+
 }

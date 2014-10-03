@@ -18,6 +18,7 @@ import org.junit.Ignore;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * @author traff
@@ -63,4 +64,13 @@ public abstract class EmulatorTestAbstract extends TestCase {
 
 
     protected abstract String getPathToTest();
+
+
+    /** kind of a hokey way to do this, but it will work for now, would be better to look up individual files as we need them */
+    protected String getTestResourceDir() {
+        URL url = getClass().getClassLoader().getResource("testData/testTooLargeScrollRegion.txt");
+        String file = url.getFile();
+        String testResourceBaseDir = file.substring(0, file.lastIndexOf('/') + 1);
+        return testResourceBaseDir;
+    }
 }
