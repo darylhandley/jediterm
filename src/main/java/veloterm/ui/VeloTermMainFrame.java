@@ -36,7 +36,7 @@ public class VeloTermMainFrame extends JFrame  {
         final JMenuBar mb = getJMenuBar();
         this.setJMenuBar(mb);
 
-        this.setTitle("Terminate");
+        this.setTitle("Velocity Terminal");
 
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

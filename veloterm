@@ -1,2 +1,12 @@
 
-java -cp "/Users/darylhandley/dev/projects/veloterm/build/libs/veloterm.jar:/Users/darylhandley/dev/projects/veloterm/lib/*"  veloterm.ui.vldocktest.VeloTermMainFrame
+# BASE_DIR is the directory that this script resides in
+BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+CLASSPATH=$BASE_DIR/build/libs/veloterm.jar:$BASE_DIR/lib/*
+
+CMD="java -Xdock:icon=$BASE_DIR/src/main/resources/vtIcon.png -Xdock:name=VelocityTerminal -cp \"$CLASSPATH\"  veloterm.ui.VeloTermMainFrame"
+
+echo $CMD
+
+eval "$CMD"
+
