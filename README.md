@@ -39,6 +39,23 @@ Features
 * Terminal tabs
 
 
+Getting started
+------
+
+* First need to install gradle, not sure which version but 2.1 works.
+* clone code
+* cd to directory
+* gradle build -x test
+* ./veloterm
+
+This should get it up and running.
+
+To import into intellij
+
+* gradle idea
+* open in Intellij
+
+
 Links
 -----
  * Terminal protocol description: http://invisible-island.net/xterm/ctlseqs/ctlseqs.html
