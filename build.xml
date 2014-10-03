@@ -86,7 +86,7 @@
              basedir="${jediterm-classes}"
              excludes="**/Test.class">
             <manifest>
-                <attribute name="Main-Class" value="com.jediterm.terminal.dui.vldocktest.TerminateMainFrame"/>
+                <attribute name="Main-Class" value="veloterm.ui.vldocktest.TerminateMainFrame"/>
             </manifest>
         </jar>
     </target>

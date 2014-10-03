@@ -1,13 +1,11 @@
-package com.jediterm.terminal.dui.vldocktest;
+package veloterm.ui.vldocktest;
 
-import com.jediterm.terminal.dui.LaunchSshAction;
-import com.jediterm.terminal.dui.Log;
-import com.jediterm.terminal.dui.SshConnectionConfig;
-import com.jediterm.terminal.dui.TerminateController;
+import veloterm.ui.Log;
+import veloterm.ui.SshConnectionConfig;
+import veloterm.ui.TerminateController;
 import com.vldocking.swing.docking.Dockable;
 import com.vldocking.swing.docking.DockingConstants;
 import com.vldocking.swing.docking.DockingDesktop;
-import com.vldocking.swing.docking.DockingUtilities;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;

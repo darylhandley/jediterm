@@ -1,4 +1,4 @@
-package com.jediterm.terminal.dui.vldocktest;
+package veloterm.ui.vldocktest;
 
 import com.vldocking.swing.docking.DockKey;
 import com.vldocking.swing.docking.Dockable;
@@ -13,14 +13,15 @@ import java.awt.*;
  * Time: 5:38 PM
  * To change this template use File | Settings | File Templates.
  */
-class MyTree extends JPanel implements Dockable {
+class MyTextEditor extends JPanel implements Dockable {
+    JTextArea textArea = new JTextArea("A Text Area");
 
-    DockKey key = new DockKey("myTree");
-    JTree tree = new JTree();
-    public MyTree() {
+    DockKey key = new DockKey("textEditor");
+
+    public MyTextEditor() {
         setLayout(new BorderLayout());
-        JScrollPane jsp = new JScrollPane(tree);
-        jsp.setPreferredSize(new Dimension(200, 200));
+        JScrollPane jsp = new JScrollPane(textArea);
+        jsp.setPreferredSize(new Dimension(300, 400));
         add(jsp, BorderLayout.CENTER);
     }
 

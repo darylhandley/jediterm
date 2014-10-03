@@ -1,9 +1,6 @@
-package com.jediterm.terminal.dui.vldocktest;
+package veloterm.ui.vldocktest;
 
-import com.jediterm.ssh.jsch.JSchTtyConnector;
-import com.jediterm.terminal.dui.SshConnectionConfig;
-import com.jediterm.terminal.ui.TerminalSession;
-import com.jediterm.terminal.ui.TerminalWidget;
+import veloterm.ui.SshConnectionConfig;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

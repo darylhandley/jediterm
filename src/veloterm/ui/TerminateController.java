@@ -1,6 +1,5 @@
-package com.jediterm.terminal.dui;
+package veloterm.ui;
 
-import com.google.common.base.Splitter;
 import com.google.common.io.Files;
 
 import java.io.File;

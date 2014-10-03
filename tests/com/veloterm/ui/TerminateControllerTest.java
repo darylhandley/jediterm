@@ -1,6 +1,8 @@
-package com.jediterm.terminal.dui;
+package com.veloterm.ui;
 
 import junit.framework.TestCase;
+import veloterm.ui.SshConnectionConfig;
+import veloterm.ui.TerminateController;
 
 /**
  * Created with IntelliJ IDEA.

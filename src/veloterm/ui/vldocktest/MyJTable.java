@@ -1,27 +1,29 @@
-package com.jediterm.terminal.dui.vldocktest;
+package veloterm.ui.vldocktest;
 
 import com.vldocking.swing.docking.DockKey;
 import com.vldocking.swing.docking.Dockable;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 /**
  * Created with IntelliJ IDEA.
  * User: daryl
  * Date: 2013-12-13
- * Time: 5:38 PM
+ * Time: 5:40 PM
  * To change this template use File | Settings | File Templates.
  */
-class MyTextEditor extends JPanel implements Dockable {
-    JTextArea textArea = new JTextArea("A Text Area");
+class MyJTable extends JPanel implements Dockable {
 
-    DockKey key = new DockKey("textEditor");
+    DockKey key = new DockKey("myJTable");
 
-    public MyTextEditor() {
+    JTable table = new JTable();
+    public MyJTable() {
         setLayout(new BorderLayout());
-        JScrollPane jsp = new JScrollPane(textArea);
-        jsp.setPreferredSize(new Dimension(300, 400));
+        table.setModel(new DefaultTableModel(5, 5));
+        JScrollPane jsp = new JScrollPane(table);
+        jsp.setPreferredSize(new Dimension(200, 200));
         add(jsp, BorderLayout.CENTER);
     }
 

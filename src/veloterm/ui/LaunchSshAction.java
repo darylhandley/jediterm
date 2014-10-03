@@ -1,4 +1,4 @@
-package com.jediterm.terminal.dui;
+package veloterm.ui;
 
 import com.jediterm.ssh.jsch.JSchTtyConnector;
 import com.jediterm.terminal.ui.TerminalSession;

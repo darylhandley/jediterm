@@ -1,10 +1,6 @@
-package com.jediterm.terminal.dui.vldocktest;
+package veloterm.ui.vldocktest;
 
-import com.jediterm.terminal.emulator.ColorPalette;
-import com.jediterm.terminal.ui.UIUtil;
 import com.jediterm.terminal.ui.settings.DefaultSettingsProvider;
-
-import java.awt.*;
 
 /**
  * Created with IntelliJ IDEA.

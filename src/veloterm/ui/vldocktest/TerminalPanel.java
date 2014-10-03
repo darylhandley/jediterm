@@ -1,22 +1,19 @@
-package com.jediterm.terminal.dui.vldocktest;
+package veloterm.ui.vldocktest;
 
 import com.google.common.collect.Maps;
 import com.jediterm.pty.PtyMain;
-import com.jediterm.pty.PtyProcessTtyConnector;
 import com.jediterm.ssh.jsch.JSchTtyConnector;
 import com.jediterm.terminal.TtyConnector;
-import com.jediterm.terminal.dui.SshConnectionConfig;
+import veloterm.ui.SshConnectionConfig;
 import com.jediterm.terminal.ui.JediTermWidget;
 import com.jediterm.terminal.ui.TerminalSession;
 import com.jediterm.terminal.ui.TerminalWidget;
 import com.jediterm.terminal.ui.UIUtil;
-import com.jediterm.terminal.ui.settings.DefaultTabbedSettingsProvider;
 import com.pty4j.PtyProcess;
 import com.vldocking.swing.docking.DockKey;
 import com.vldocking.swing.docking.Dockable;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.nio.charset.Charset;
 import java.util.Map;

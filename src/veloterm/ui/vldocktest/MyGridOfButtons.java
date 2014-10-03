@@ -1,4 +1,4 @@
-package com.jediterm.terminal.dui.vldocktest;
+package veloterm.ui.vldocktest;
 
 import com.vldocking.swing.docking.DockKey;
 import com.vldocking.swing.docking.Dockable;

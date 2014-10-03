@@ -1,4 +1,4 @@
-package com.jediterm.terminal.dui;
+package veloterm.ui;
 
 /**
  * Created with IntelliJ IDEA.
