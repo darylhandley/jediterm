@@ -1,4 +1,4 @@
-package veloterm.ui;
+package veloterm.util;
 
 /**
  * Created with IntelliJ IDEA.

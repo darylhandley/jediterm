@@ -1,11 +1,10 @@
-package veloterm.ui.vldocktest;
+package veloterm.ui;
 
-import veloterm.ui.Log;
-import veloterm.ui.SshConnectionConfig;
-import veloterm.ui.TerminateController;
 import com.vldocking.swing.docking.Dockable;
 import com.vldocking.swing.docking.DockingConstants;
 import com.vldocking.swing.docking.DockingDesktop;
+import veloterm.model.SshConnectionConfig;
+import veloterm.util.Log;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
@@ -19,20 +18,18 @@ import java.util.List;
  * Time: 5:41 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TerminateMainFrame extends JFrame  {
+public class VeloTermMainFrame extends JFrame  {
 
 
     final JMenu connectionsMenu = new JMenu("Connections");
 
     DockingDesktop terminalsDesktop = new DockingDesktop();
 
-    private TerminateController terminateController = TerminateController.get();
-
-    private Dockable editorPanel = new MyTextEditor();
+    private VeloTermController terminateController = VeloTermController.get();
 
     private TerminalPanel terminalPanel1;
 
-    public TerminateMainFrame(){
+    public VeloTermMainFrame(){
 
         // System.setProperty("com.apple.mrj.application.apple.menu.about.name", "My App Name");
 
@@ -146,7 +143,7 @@ public class TerminateMainFrame extends JFrame  {
         // add a connection to menu bar for all connections loaded from the file
         List<SshConnectionConfig> connConfigs = terminateController.loadConnectionsFromFile();
         for (SshConnectionConfig connConfig : connConfigs) {
-            connectionsMenu.add(new TerminateLaunchSshAction(
+            connectionsMenu.add(new LaunchSshAction(
                 connConfig,
                 this
             ));
@@ -156,7 +153,7 @@ public class TerminateMainFrame extends JFrame  {
     }
 
     public static void main(String[] args){
-        final TerminateMainFrame frame = new TerminateMainFrame();
+        final VeloTermMainFrame frame = new VeloTermMainFrame();
         frame.setSize(1400,1100);
         frame.validate();
         SwingUtilities.invokeLater(new Runnable(){
@@ -169,7 +166,7 @@ public class TerminateMainFrame extends JFrame  {
 
     private void addToConnectionsMenu(String name, String host, String username, String password) {
 
-        connectionsMenu.add(new TerminateLaunchSshAction(
+        connectionsMenu.add(new LaunchSshAction(
                 new SshConnectionConfig(name, host, username, password),
                 this
         ));

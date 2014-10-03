@@ -1,10 +1,9 @@
-package veloterm.ui.vldocktest;
+package veloterm.ui;
 
 import com.google.common.collect.Maps;
 import com.jediterm.pty.PtyMain;
 import com.jediterm.ssh.jsch.JSchTtyConnector;
 import com.jediterm.terminal.TtyConnector;
-import veloterm.ui.SshConnectionConfig;
 import com.jediterm.terminal.ui.JediTermWidget;
 import com.jediterm.terminal.ui.TerminalSession;
 import com.jediterm.terminal.ui.TerminalWidget;
@@ -12,6 +11,7 @@ import com.jediterm.terminal.ui.UIUtil;
 import com.pty4j.PtyProcess;
 import com.vldocking.swing.docking.DockKey;
 import com.vldocking.swing.docking.Dockable;
+import veloterm.model.SshConnectionConfig;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,7 +45,7 @@ public class TerminalPanel extends JPanel implements Dockable {
             ttyConnector = new JSchTtyConnector(connConfig.host, connConfig.username, connConfig.password);
         }
 
-        JediTermWidget jtWidget = new JediTermWidget(new TerminateSettingsProvider());
+        JediTermWidget jtWidget = new JediTermWidget(new VeloTermSettingsProvider());
         TerminalSession session = jtWidget.createTerminalSession(ttyConnector);
         session.start();
 

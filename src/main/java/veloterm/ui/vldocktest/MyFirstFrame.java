@@ -1,9 +1,10 @@
 package veloterm.ui.vldocktest;
 
-import veloterm.ui.SshConnectionConfig;
+import veloterm.model.SshConnectionConfig;
 import com.vldocking.swing.docking.Dockable;
 import com.vldocking.swing.docking.DockingConstants;
 import com.vldocking.swing.docking.DockingDesktop;
+import veloterm.ui.TerminalPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

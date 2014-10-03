@@ -1,8 +1,7 @@
 package veloterm.ui;
 
 import junit.framework.TestCase;
-import veloterm.ui.SshConnectionConfig;
-import veloterm.ui.TerminateController;
+import veloterm.model.SshConnectionConfig;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,7 +12,7 @@ import veloterm.ui.TerminateController;
  */
 public class TerminateControllerTest extends TestCase {
 
-    TerminateController terminateController = TerminateController.get();
+    VeloTermController terminateController = VeloTermController.get();
 
     public void testLineToConnectionConfig() {
 

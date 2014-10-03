@@ -24,43 +24,43 @@ import java.io.IOException;
  */
 @Ignore
 public abstract class EmulatorTestAbstract extends TestCase {
-  protected static void assertColor(TextStyle style, TerminalColor foreground, TerminalColor background) {
-    assertEquals(foreground, style.getForeground());
-    assertEquals(background, style.getBackground());
-  }
-
-  protected BackBuffer doTest() throws IOException {
-    return doTest(80, 24);
-  }
-
-  private BackBuffer doTest(int width, int height) throws IOException {
-    return doTest(width, height, FileUtil.loadFileLines(new File(getPathToTest() + ".after.txt")));
-  }
-
-  protected BackBuffer doTest(int width, int height, String expected) throws IOException {
-    StyleState state = new StyleState();
-
-    BackBuffer backBuffer = new BackBuffer(width, height, state);
-
-    Terminal terminal = new BackBufferTerminal(backBuffer, state);
-
-    ArrayTerminalDataStream
-        fileStream = new ArrayTerminalDataStream(FileUtil.loadFileText(new File(getPathToTest() + ".txt"),
-        "UTF-8"));
-
-    Emulator emulator = new JediEmulator(fileStream, new NullTerminalOutputStream(), terminal);
-
-    while (emulator.hasNext()) {
-      emulator.next();
+    protected static void assertColor(TextStyle style, TerminalColor foreground, TerminalColor background) {
+        assertEquals(foreground, style.getForeground());
+        assertEquals(background, style.getBackground());
     }
 
-    assertEquals(expected, backBuffer.getLines());
+    protected BackBuffer doTest() throws IOException {
+        return doTest(80, 24);
+    }
 
-    BackBufferUtil.assertBuffersEquals(backBuffer);
+    private BackBuffer doTest(int width, int height) throws IOException {
+        return doTest(width, height, FileUtil.loadFileLines(new File(getPathToTest() + ".after.txt")));
+    }
 
-    return backBuffer;
-  }
+    protected BackBuffer doTest(int width, int height, String expected) throws IOException {
+        StyleState state = new StyleState();
+
+        BackBuffer backBuffer = new BackBuffer(width, height, state);
+
+        Terminal terminal = new BackBufferTerminal(backBuffer, state);
+
+        ArrayTerminalDataStream
+                fileStream = new ArrayTerminalDataStream(FileUtil.loadFileText(new File(getPathToTest() + ".txt"),
+                "UTF-8"));
+
+        Emulator emulator = new JediEmulator(fileStream, new NullTerminalOutputStream(), terminal);
+
+        while (emulator.hasNext()) {
+            emulator.next();
+        }
+
+        assertEquals(expected, backBuffer.getLines());
+
+        BackBufferUtil.assertBuffersEquals(backBuffer);
+
+        return backBuffer;
+    }
 
 
-  protected abstract String getPathToTest();
+    protected abstract String getPathToTest();
 }

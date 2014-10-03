@@ -1,4 +1,4 @@
-package veloterm.ui.vldocktest;
+package veloterm.ui;
 
 import com.jediterm.terminal.ui.settings.DefaultSettingsProvider;
 
@@ -9,7 +9,7 @@ import com.jediterm.terminal.ui.settings.DefaultSettingsProvider;
  * Time: 12:59 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TerminateSettingsProvider extends DefaultSettingsProvider {
+public class VeloTermSettingsProvider extends DefaultSettingsProvider {
 
     @Override
     public float getTerminalFontSize() {

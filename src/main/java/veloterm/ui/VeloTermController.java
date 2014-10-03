@@ -1,6 +1,8 @@
 package veloterm.ui;
 
 import com.google.common.io.Files;
+import veloterm.model.SshConnectionConfig;
+import veloterm.util.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,20 +13,20 @@ import java.util.List;
 /**
  * Singleton controller for communicating in Terminate app.
  */
-public class TerminateController {
-    private static TerminateController theInstance;
+public class VeloTermController {
+    private static VeloTermController theInstance;
 
     // supposedly this works on linux and mac but not so great on windows
     // http://stackoverflow.com/questions/585534/what-is-the-best-way-to-find-the-users-home-directory-in-java
     private static String filename = System.getProperty("user.home") + "/.terminate/connections";
 
-    private TerminateController() {
+    private VeloTermController() {
 
     }
 
-    public static TerminateController get() {
+    public static VeloTermController get() {
         if (theInstance == null) {
-            theInstance = new TerminateController();
+            theInstance = new VeloTermController();
         }
         return theInstance;
     }

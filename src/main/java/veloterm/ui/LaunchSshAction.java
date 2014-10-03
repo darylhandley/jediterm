@@ -1,6 +1,6 @@
-package veloterm.ui.vldocktest;
+package veloterm.ui;
 
-import veloterm.ui.SshConnectionConfig;
+import veloterm.model.SshConnectionConfig;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,12 +12,12 @@ import java.awt.event.ActionEvent;
  * Time: 2:20 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TerminateLaunchSshAction extends AbstractAction {
+public class LaunchSshAction extends AbstractAction {
 
     private SshConnectionConfig config;
-    private TerminateMainFrame terminateMainFrame;
+    private VeloTermMainFrame terminateMainFrame;
 
-    public TerminateLaunchSshAction(SshConnectionConfig config, TerminateMainFrame terminateMainFrame) {
+    public LaunchSshAction(SshConnectionConfig config, VeloTermMainFrame terminateMainFrame) {
         super(config.name);
         this.config = config;
         this.terminateMainFrame = terminateMainFrame;

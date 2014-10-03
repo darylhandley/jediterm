@@ -7,7 +7,7 @@ import com.google.common.collect.Lists;
 import com.jediterm.terminal.*;
 import com.jediterm.terminal.TextStyle.Option;
 import com.jediterm.terminal.display.*;
-import veloterm.ui.Log;
+import veloterm.util.Log;
 import com.jediterm.terminal.emulator.ColorPalette;
 import com.jediterm.terminal.emulator.charset.CharacterSets;
 import com.jediterm.terminal.emulator.mouse.MouseMode;

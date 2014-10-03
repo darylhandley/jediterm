@@ -9,6 +9,19 @@ apply plugin: 'idea'
 
 
 dependencies {
-    // compile files('lib/guava-14.0.1.jar', 'libs/b.jar')
-    compile fileTree(dir: 'lib', include: '*.jar')
+    compile files(
+            'lib/annotations.jar',
+            'lib/guava-14.0.1.jar',
+            'lib/javac2.jar',
+            'lib/jna.jar',
+            'lib/jna-platform.jar',
+            'lib/jsch-0.1.50.jar',
+            'lib/junit-4.1.0.jar',
+            'lib/jzlib-1.1.1.jar',
+            'lib/log4j-1.2.14.jar',
+            'lib/pty4j-0.3.jar',
+            'lib/purejavacomm-0.0.17.jar',
+            'lib/vldocking-3.0.2.jar'
+    )
+    // compile fileTree(dir: 'lib', include: '*.jar')
 }
