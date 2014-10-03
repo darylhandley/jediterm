@@ -17,7 +17,7 @@ public class TerminateSettingsProvider extends DefaultSettingsProvider {
 
     @Override
     public float getTerminalFontSize() {
-        return 10;
+        return 11;
     }
 
 
