@@ -68,7 +68,9 @@ public class TerminalPanel extends JPanel implements Dockable {
                 command = new String[]{"cmd.exe"};
             }
 
-            PtyProcess process = PtyProcess.exec(command, envs, null);
+            // open terminal in user's home directory
+            String homeDir = System.getProperty("user.home");
+            PtyProcess process = PtyProcess.exec(command, envs, homeDir);
 
             return new PtyMain.LoggingPtyProcessTtyConnector(process, Charset.forName("UTF-8"));
         } catch (Exception e) {

@@ -36,7 +36,8 @@ public class PtyMain extends AbstractTerminalFrame {
         command = new String[]{"cmd.exe"};
       }
 
-      PtyProcess process = PtyProcess.exec(command, envs, null);
+        String homeDir = System.getProperty("user.home");
+      PtyProcess process = PtyProcess.exec(command, envs, homeDir);
 
       return new LoggingPtyProcessTtyConnector(process, Charset.forName("UTF-8"));
     } catch (Exception e) {
