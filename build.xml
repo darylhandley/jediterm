@@ -2,6 +2,8 @@
     <property name="src-terminal" value="src-terminal"/>
     <property name="src-pty" value="src-pty"/>
     <property name="src-ssh" value="src-ssh"/>
+    <property name="src" value="src"/>
+
 
     <loadfile property="version" srcfile="VERSION"/>
 
@@ -53,6 +55,7 @@
             <src path="${src-terminal}"/>
             <src path="${src-ssh}"/>
             <src path="${src-pty}"/>
+            <src path="${src}"/>
             <classpath refid="common-jars"/>
             <!--<classpath refid="ssh-jars"/>-->
         </javac>
