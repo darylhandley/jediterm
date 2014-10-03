@@ -1,6 +1,5 @@
 package com.jediterm;
 
-import testData.TestPathsManager;
 
 import java.io.IOException;
 

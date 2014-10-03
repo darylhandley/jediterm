@@ -2,7 +2,6 @@ package com.jediterm;
 
 import com.jediterm.terminal.display.BackBuffer;
 import com.jediterm.terminal.emulator.ColorPalette;
-import testData.TestPathsManager;
 
 import java.io.IOException;
 

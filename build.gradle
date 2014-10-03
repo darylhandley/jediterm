@@ -1,0 +1,13 @@
+//task hello {
+//    doLast {
+//        println 'Hello world!'
+//    }
+//}
+
+apply plugin: 'java'
+
+
+dependencies {
+    // compile files('lib/guava-14.0.1.jar', 'libs/b.jar')
+    compile fileTree(dir: 'lib', include: '*.jar')
+}
