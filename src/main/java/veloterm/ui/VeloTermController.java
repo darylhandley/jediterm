@@ -18,7 +18,7 @@ public class VeloTermController {
 
     // supposedly this works on linux and mac but not so great on windows
     // http://stackoverflow.com/questions/585534/what-is-the-best-way-to-find-the-users-home-directory-in-java
-    private static String filename = System.getProperty("user.home") + "/.terminate/connections";
+    private static String filename = System.getProperty("user.home") + "/.veloterm/connections";
 
     private VeloTermController() {
 

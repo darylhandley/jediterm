@@ -16,7 +16,7 @@ dependencies {
             'lib/jna.jar',
             'lib/jna-platform.jar',
             'lib/jsch-0.1.50.jar',
-            'lib/junit-4.1.0.jar',
+            'lib/junit-4.10.jar',
             'lib/jzlib-1.1.1.jar',
             'lib/log4j-1.2.14.jar',
             'lib/pty4j-0.3.jar',
