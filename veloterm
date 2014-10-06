@@ -4,7 +4,7 @@ BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 CLASSPATH=$BASE_DIR/build/libs/veloterm.jar:$BASE_DIR/lib/*
 
-CMD="java -Xdock:icon=$BASE_DIR/src/main/resources/vtIcon.png -Xdock:name=VelocityTerminal -cp \"$CLASSPATH\"  veloterm.ui.VeloTermMainFrame"
+CMD="nohup java -Xdock:icon=$BASE_DIR/src/main/resources/vtIcon.png -Xdock:name=VelocityTerminal -cp \"$CLASSPATH\"  veloterm.ui.VeloTermMainFrame >/dev/null 2>&1"
 
 echo $CMD
 
